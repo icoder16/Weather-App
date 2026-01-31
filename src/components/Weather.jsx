@@ -32,6 +32,11 @@ const Weather = () => {
     "13n": snow_icon,
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    search(inputRef.current.value);
+  }
+
   const search=async(city)=>{
 
     if(city===""){
@@ -74,10 +79,10 @@ const Weather = () => {
 
   return (
     <div className='weather'>
-      <div className="search-bar">
+      <form className="search-bar" onSubmit={handleSubmit}>
         <input ref={inputRef} type="text" placeholder='Search'/>
         <img src={search_icon} alt='' onClick={()=> search(inputRef.current.value)}/>
-      </div>
+      </form>
 
     {weatherData? <>
       <img src={weatherData.icon} alt='' className='weather-icon'/>
